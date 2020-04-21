@@ -66,6 +66,8 @@ class AuthTokenSerializer(serializers.Serializer):
 class UserSerializer(serializers.ModelSerializer):
     """ user serializer
     """
+    image = serializers.ImageField(read_only=True)
+
     class Meta:
         model = get_user_model()
         fields = (
@@ -75,4 +77,16 @@ class UserSerializer(serializers.ModelSerializer):
             'last_name',
             'image',
             'date_joined',
+        )
+
+
+class AvatarSerializer(serializers.ModelSerializer):
+    """ image serializer
+    """
+    image = serializers.ImageField(write_only=True)
+
+    class Meta:
+        model = get_user_model()
+        fields = (
+            'image',
         )

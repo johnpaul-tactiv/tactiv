@@ -8,7 +8,7 @@ from rest_framework.views import APIView
 from rest_framework.viewsets import ViewSet
 
 
-from .serializers import AuthTokenSerializer, UserSerializer
+from .serializers import AuthTokenSerializer, UserSerializer, AvatarSerializer
 
 
 class Login(APIView):
@@ -44,3 +44,29 @@ class AuthUser(ViewSet):
     def get(self, request):
         serializer = self.serializer_class(request.user)
         return Response(serializer.data, status=200)
+
+    def post(self, request):
+        serializer = self.serializer_class(
+            data=request.data,
+            instance=request.user
+        )
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        return Response(status=204)
+
+
+class Avatar(ViewSet):
+    """ upload avatar
+    """
+    serializer_class = AvatarSerializer
+
+    def post(self, request):
+        serializer = self.serializer_class(
+            data=request.data,
+            instance=request.user
+        )
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        return Response(status=204)
