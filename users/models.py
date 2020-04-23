@@ -11,6 +11,9 @@ from django.utils import timezone
 
 from rest_framework.authtoken.models import Token
 
+from tickets.models import Board
+from utils.annoying import get_object_or_none
+
 from .managers import UserManager
 from .utils import user_media_path
 
@@ -34,6 +37,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ("first_name", "last_name")
 
+    @property
+    def board(self):
+        return get_object_or_none(Board, user=self)
+
     def __str__(self):
         return f"{self.email}"
 
@@ -52,6 +59,11 @@ class User(AbstractBaseUser, PermissionsMixin):
 
         return token
 
+    def create_board(self):
+        """ create a board for each user
+        """
+        return Board.objects.create(user=self)
+
 
 @receiver(post_save, sender=User)
 def create_auth_token(instance=None, created=False, **kwargs):
@@ -60,3 +72,4 @@ def create_auth_token(instance=None, created=False, **kwargs):
     if created:
         # generate token
         instance.get_token()
+        instance.create_board()
