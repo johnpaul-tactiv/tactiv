@@ -1,0 +1,26 @@
+
+<div>
+    <div>
+        <img [src]="auth.user.image" (click)="uploadPhoto()"/>
+    </div>
+    <input [hidden]="true" name="image" type="file" accept="image/*" (change)="upload($event)">
+</div>
+
+<form [formGroup]="form.form" (ngSubmit)="onSubmit(form.form)">
+    <div>
+        <label>First Name:</label>
+        <input formControlName="first_name" type="text">
+        <span [hidden]="form.valid('first_name')">*This Field is required</span>
+    </div>
+    <div>
+        <label>Last Name:</label>
+        <input formControlName="last_name" type="text">
+        <span [hidden]="form.valid('last_name')">*This Field is required</span>
+    </div>
+    <div>
+        <label>Email:</label>
+        <input formControlName="email" type="text">
+        <span [hidden]="form.valid('email')">*This Field is required</span>
+    </div>
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+</form>

@@ -1,0 +1,54 @@
+<div class="mt-3">
+
+    <div class="px-3">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a
+                    uiSref="overview"
+                    [uiParams]="proj.code"
+                    class="nav-link active">
+                    {{ proj.instance.name }}
+                </a>
+            </li>
+            <li class="nav-item">
+                <a
+                    uiSref="create"
+                    class="nav-link">
+                    + New Project
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <hr>
+    
+    <div class="px-3">
+        <h5>Manage</h5>
+        <ul class="nav nav-pills flex-column">
+            <li class="nav-item">
+                <a
+                    uiSref="project"
+                    [uiParams]="{'code': proj.instance.code}"
+                    uiSrefActive="active"
+                    class="nav-link">
+                    Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a
+                    uiSref=""
+                    [uiParams]="{'code': proj.instance.code}"
+                    class="nav-link">
+                    Apps
+                </a>
+            </li>
+            <li class="nav-item">
+                <a
+                    uiSref=""
+                    class="nav-link">
+                    Issue Board
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

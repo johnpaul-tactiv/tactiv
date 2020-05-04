@@ -1,0 +1,48 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 border-right p-0">
+            <app-projects-sidebar></app-projects-sidebar>
+        </div>
+        <div class="col-md-10">
+            <div class="my-5">
+                <h3>{{ proj.instance.name }}</h3>
+                <a href="">{{ proj.instance.domain }}</a>
+                <p>{{ proj.instance.desc }}</p>
+            </div>
+
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link"
+                       uiSref="overview"
+                       [uiParams]="{code: proj.instance.code}"
+                       uiSrefActive="active"
+                    >Overview</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                       uiSref="activity"
+                       [uiParams]="{code: proj.instance.code}"
+                       uiSrefActive="active"
+                    >Activity</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                       uiSref="billing"
+                       [uiParams]="{code: proj.instance.code}"
+                       uiSrefActive="active"
+                    >Billing</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                       uiSref="settings"
+                       [uiParams]="{code: proj.instance.code}"
+                       uiSrefActive="active"
+                    >Settings</a>
+                </li>
+            </ul>
+            
+            <ui-view name="content"></ui-view>
+
+        </div>
+    </div>
+</div>

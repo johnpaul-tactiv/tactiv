@@ -1,0 +1,43 @@
+<div class="container mt-3">
+    <h3>Create a project</h3>
+    <div class="col-md-6 offset-md-3">
+
+        <form [formGroup]="form.form" (ngSubmit)="onSubmit(form.form)">
+            <div class="form-group">
+                <label>Name</label>
+                <input
+                    formControlName="name"
+                    [ngClass]="{'is-invalid': !form.valid('name')}"
+                    type="text"
+                    class="form-control"
+    
+                >
+                <div
+                    [hidden]="form.valid('name')"
+                    class="invalid-feedback"
+                >
+                    This field is required.
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Add a description</label>
+                <textarea
+                    formControlName="desc"
+                    class="form-control"
+                ></textarea>
+            </div>
+    
+            <div class="form-group">
+                <label>Site URL (Domain)</label>
+                <input
+                    formControlName="domain"
+                    type="url"
+                    class="form-control"
+                >
+            </div>
+    
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+
+    </div>
+</div>
