@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ViewSet
 
-
+from rest_framework.authentication import TokenAuthentication, SessionAuthentication
 from .serializers import AuthTokenSerializer, UserSerializer, AvatarSerializer
 
 
@@ -40,7 +40,7 @@ class AuthUser(ViewSet):
     """ auth user endpoint
     """
     serializer_class = UserSerializer
-
+    authentication_classes = (TokenAuthentication, SessionAuthentication)
     def get(self, request):
         serializer = self.serializer_class(request.user)
         return Response(serializer.data, status=200)

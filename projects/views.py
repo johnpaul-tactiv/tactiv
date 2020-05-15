@@ -2,6 +2,8 @@ from django.shortcuts import get_object_or_404
 
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
+from rest_framework.authentication import TokenAuthentication, SessionAuthentication
+
 from .serializers import ProjectSerializer
 
 
@@ -9,6 +11,7 @@ class Projects(ViewSet):
     """ project list endpoint
     """
     serializer_class = ProjectSerializer
+    authentication_classes = (TokenAuthentication, SessionAuthentication)
 
     def get(self, request):
         serializer = self.serializer_class(
