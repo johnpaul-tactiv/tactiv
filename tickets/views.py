@@ -9,7 +9,6 @@ from .serializers import TicketSerializer, BaseTicketSerializer, BoardSerializer
 class Tickets(ViewSet):
     """Ticket list endpoint"""
     serializer_class = BaseTicketSerializer
-    authentication_classes = (TokenAuthentication, SessionAuthentication)
 
     def get(self, request):
         serializer = self.serializer_class(
@@ -59,7 +58,6 @@ class Tickets(ViewSet):
 class Boards(ViewSet):
     """Boards list endpoint"""
     serializer_class = BoardSerializer
-    authentication_classes = (TokenAuthentication, SessionAuthentication)
 
     def get(self, request):
         serializer = self.serializer_class(

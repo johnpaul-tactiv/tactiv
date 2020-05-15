@@ -11,7 +11,6 @@ class Projects(ViewSet):
     """ project list endpoint
     """
     serializer_class = ProjectSerializer
-    authentication_classes = (TokenAuthentication, SessionAuthentication)
 
     def get(self, request):
         serializer = self.serializer_class(

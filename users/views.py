@@ -40,7 +40,7 @@ class AuthUser(ViewSet):
     """ auth user endpoint
     """
     serializer_class = UserSerializer
-    authentication_classes = (TokenAuthentication, SessionAuthentication)
+
     def get(self, request):
         serializer = self.serializer_class(request.user)
         return Response(serializer.data, status=200)
